@@ -1,4 +1,3 @@
-```
 # Angular Quiz
 
 ## Project Overview
