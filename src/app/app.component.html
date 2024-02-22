@@ -1,76 +1,60 @@
+<router-outlet></router-outlet>
+<div *ngIf="showMainContent">
 <div class="search-wrapper sticky-top" [style.background-color]="isNavCollapse ? '#ffc107' : 'transparent'"
-[class.shadow-sm]="isNavCollapse">
+  [class.shadow-sm]="isNavCollapse">
   <div class="container">
     <div class="d-flex justify-content-between align-items-center">
-      <div class="d-inline-block">
-        <i class="fas fa-bars nav-icon"></i>
+      <div class="d-inline-block" hidden>
+        <i class="fas fa-bars nav-icon" hidden></i>
       </div>
       <div class="d-inline-block">
-        <img class="img-logo" src="https://bl6pap004files.storage.live.com/y4m2BSxwOsIuTnc01gOOuS3KJ427ZFgXjpskhELusS1OWP1nSkBwECOoRE4OkEpPtjHQzhFjdAYh1txnDh4VFaPpB7FZFg5I3Evu9PJD6dXWIDpaY_aqBSniBS5DG-NA34J8T7ylbhLPgaOaPw0KTBmzYnDZ8e6RmCl-eTxBcRpZQJKkuPmh9zfCfWs31kB6-5M?width=241&height=51&cropmode=none"/>
+        <img class="img-logo"
+          src="https://i.ibb.co/q9HQtT1/kisspng-angularjs-ruby-on-rails-typescript-web-application-icon-hacker-5ad97b80444060-94375043152420.png" />
       </div>
-      <div class="d-inline-block" (click)="collapse.toggle()">
+      <div class="d-inline-block" (click)="toggleSearch()">
         <i class="fas fa-search nav-icon"></i>
       </div>
     </div>
     <div #collapse="ngbCollapse" [(ngbCollapse)]="!isCollapsed">
-      <input type="text" class="form-control input-search" placeholder="Search Products...">
+      <input #searchInput type="text" class="form-control input-search" placeholder="Search Users..."
+        (input)="search(searchInput.value)">
+
     </div>
   </div>
 </div>
 
-<ngb-carousel>
-  <ng-template ngbSlide>
-    <div class="picsum-img-wrapper">
-      <img src="https://picsum.photos/id/44/1920/600" alt="Random second slide">
-    </div>
-    <div class="carousel-caption">
-      <h3>Second slide label</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-    </div>
-  </ng-template>
-  <ng-template ngbSlide>
-    <div class="picsum-img-wrapper">
-      <img src="https://picsum.photos/id/66/1920/600" alt="Random third slide">
-    </div>
-    <div class="carousel-caption">
-      <h3>Third slide label</h3>
-      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-    </div>
-  </ng-template>
-</ngb-carousel>
-
 <div class="container px-0">
-  <h3 class="main-title">promotions</h3>
-  <p class="sub-title">view more</p>
+  <h3 class="main-title">Users</h3>
+  <br><br>
   <drag-scroll #nav [scroll-x-wheel-enabled]="true">
-    <div *ngFor="let p of productList; let i = index" drag-scroll-item>
+    <div *ngFor="let user of users" drag-scroll-item (click)="navigateToUserDetail(user.id)">
       <div class="card shadow-sm">
-        <img [src]="p.image" class="card-img-top" alt="...">
+        <img [src]="user.avatar" class="card-img-top" alt="{{user.first_name}}">
         <div class="card-body">
-          <h6 class="card-title">{{p.title}}</h6>
-
-          <i class="fas fa-star text-warning" *ngIf="p.rating > 0"></i>
-          <i class="fas fa-star text-warning" *ngIf="p.rating > 1"></i>
-          <i class="fas fa-star text-warning" *ngIf="p.rating > 2"></i>
-          <i class="fas fa-star text-warning" *ngIf="p.rating > 3"></i>
-          <i class="fas fa-star text-warning" *ngIf="p.rating > 4"></i>
-
-          <i class="far fa-star" *ngIf="p.rating < 5"></i>
-          <i class="far fa-star" *ngIf="p.rating < 4"></i>
-          <i class="far fa-star" *ngIf="p.rating < 3"></i>
-          <i class="far fa-star" *ngIf="p.rating < 2"></i>
-          <i class="far fa-star" *ngIf="p.rating < 1"></i>
+          <h6 class="card-title">{{user.first_name}} {{user.last_name}}</h6>
+          <p class="card-text">{{user.email}}</p>
         </div>
       </div>
     </div>
   </drag-scroll>
 
+  <!-- Pagination Controls -->
+  <div class="pagination-controls" style="text-align: center;">
+    <button (click)="paginateUsers(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
+    <button (click)="paginateUsers(currentPage + 1)" [disabled]="currentPage >= total_pages">Next</button>
+  </div>
+
   <div class="bottom-placeholder"></div>
-  <div class="bottom-placeholder"></div>
-  <div class="bottom-placeholder"></div>
+  <div #thankYouNote [@scaleUpOnView]="thankYouNoteInView ? 'inView' : 'outOfView'" class="thank-you-note">
+    <h2>Thank you!</h2>
+  </div>
+
   <div class="bottom-placeholder"></div>
 </div>
 
+</div>
+
 <div class="cart-wrapper fixed-bottom text-center">
-  <small class="author d-block">Designed by <a href="https://github.com/GabrielGhsoub" class="author-link">Gabriel Ghoussoub</a>. Powered by <i class="fab fa-angular"></i></small>
+  <small class="author d-block">Designed by <a href="https://www.linkedin.com/in/gabriel-ghoussoub/"
+      class="author-link">Gabriel Ghoussoub</a>. Powered by <i class="fab fa-angular"></i></small>
 </div>

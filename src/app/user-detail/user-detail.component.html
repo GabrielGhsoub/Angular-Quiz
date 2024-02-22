@@ -1,0 +1,7 @@
+<div *ngIf="user" class="user-detail-container">
+  <img [src]="user.avatar" alt="Avatar of {{ user.first_name }} {{ user.last_name }}" class="user-avatar">
+  <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+  <p>Email: {{ user.email }}</p>
+  <button (click)="goBack()" class="back-button">Go Back</button>
+</div>
+<div *ngIf="!user" class="loading-spinner"></div>

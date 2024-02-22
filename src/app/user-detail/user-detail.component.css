@@ -1,0 +1,53 @@
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-spinner {
+  border: 4px solid #f3f3f3; /* Light grey background */
+  border-top: 4px solid #3498db; /* Blue spinner color */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+  margin: 20px auto;
+}
+
+.user-detail-container {
+    text-align: center;
+    font-family: 'Noto Sans SC', sans-serif;
+    color: #2e2e2e;
+    margin-top: 1rem;
+  }
+  
+  .user-avatar {
+    border-radius: 50%;
+    width: 5rem; /* Adjust the size as necessary */
+    height: 5rem; /* Adjust the size as necessary */
+    object-fit: cover;
+    margin-bottom: 1rem;
+  }
+  
+  /* Add styles for the back button to match other buttons in the app */
+  .back-button {
+    background-color: #ffc107;
+    color: #2e2e2e;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .back-button:hover {
+    background-color: #e6b807;
+    transform: translateY(-2px);
+  }
+  
+  .loading-text {
+    font-family: 'Noto Sans SC', sans-serif;
+    color: #2e2e2e;
+    text-align: center;
+  }
+  

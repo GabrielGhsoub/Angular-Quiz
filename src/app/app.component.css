@@ -7,9 +7,11 @@
   margin-left: 0.5rem;
   margin-top: 0.5rem;
   border-radius: 0.75rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform, box-shadow;
 }
 
-.card > img {
+.card>img {
   border-top-left-radius: 0.75rem;
   border-top-right-radius: 0.75rem;
 }
@@ -26,13 +28,27 @@
   margin-bottom: 0.5rem;
 }
 
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
 drag-scroll {
-  display: flex;
-  overflow-x: auto; /* Allows horizontal scrolling */
-  overflow-y: hidden; /* Prevents vertical scrolling */
   height: 20rem;
   width: 100%;
-  -webkit-overflow-scrolling: touch; /* Improves scrolling on touch devices */
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+drag-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+drag-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 
@@ -40,8 +56,8 @@ drag-scroll {
   margin-top: 1rem;
   color: #2e2e2e;
   font-family: 'Noto Sans SC', sans-serif;
-  text-transform: uppercase;
   text-align: center;
+  margin-left: -28px;
 }
 
 .sub-title {
@@ -52,6 +68,7 @@ drag-scroll {
   font-size: small;
   margin: 0;
 }
+
 .sub-title:hover {
   cursor: pointer;
 }
@@ -93,7 +110,7 @@ drag-scroll {
   border-width: 2px;
 }
 
-.btn-search > i {
+.btn-search>i {
   margin: 0.75rem;
 }
 
@@ -123,7 +140,7 @@ ngb-carousel {
   margin-top: -115px;
 }
 
-.picsum-img-wrapper > img {
+.picsum-img-wrapper>img {
   width: 100%;
   height: 30rem;
 }
@@ -132,4 +149,61 @@ ngb-carousel {
   font-size: 1.5rem;
   vertical-align: middle;
   cursor: pointer;
+}
+
+drag-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+
+.thank-you-note {
+  margin: 0 auto;
+  transform-origin: center;
+  max-width: 100%;
+  text-align: center;
+  margin-top: 2rem;
+  transition: transform 0.5s ease-in-drag-scroll;
+}
+
+
+.container {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.pagination-controls button {
+  background-color: #ffc107;
+  color: #2e2e2e;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.pagination-controls button:hover {
+  background-color: #e6b807;
+  transform: translateY(-2px);
+}
+
+.pagination-controls button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.card>img {
+  border-top-left-radius: 0.75rem;
+  border-top-right-radius: 0.75rem;
+  width: 100%;
+  height: 10rem;
+  object-fit: cover;
+}
+
+.card-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
